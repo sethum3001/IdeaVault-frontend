@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../const";
+import { userValidation} from "../userValidation/yup_validation";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+       await userValidation.isValid({ name, email, password }); 
       // Send sign-up request to the server and handle the JWT token response
       const response = await axios.post(`${BASE_URL}/user/register`, {
         name,
