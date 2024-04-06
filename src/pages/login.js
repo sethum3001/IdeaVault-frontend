@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios"; 
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../const";
 
@@ -23,7 +23,12 @@ function LoginPage() {
       localStorage.setItem("accessToken", token);
       navigate("/dashboard");
     } catch (error) {
-      console.error("Authentication error:", error);
+      if (error.response && error.response.status === 400) {
+        console.log(error.response.data.errors)
+      } else {
+         console.error("Authentication error:", error);
+      }
+     
       // Handle authentication errors, show error messages, etc.
     }
   };
