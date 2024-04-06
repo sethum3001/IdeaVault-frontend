@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {BASE_URL} from "../const";
 
 const Label = ({ setLabelBarKey }) => {
   const [showModal, setShowModal] = useState(false);
@@ -10,7 +11,7 @@ const Label = ({ setLabelBarKey }) => {
   const fetchLabels = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const response = await axios.get("http://localhost:8070/labels", {
+      const response = await axios.get(`${BASE_URL}/labels`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -26,7 +27,7 @@ const Label = ({ setLabelBarKey }) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
       await axios.post(
-        "http://localhost:8070/labels",
+        `${BASE_URL}/labels`,
         { labelName: newLabel },
         {
           headers: {
@@ -47,7 +48,7 @@ const Label = ({ setLabelBarKey }) => {
   const handleDeleteLabel = async (labelId) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      await axios.delete(`http://localhost:8070/labels/${labelId}`, {
+      await axios.delete(`${BASE_URL}/labels/${labelId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -65,7 +66,7 @@ const Label = ({ setLabelBarKey }) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
       await axios.patch(
-        `http://localhost:8070/labels/${labelId}`,
+        `${BASE_URL}/labels/${labelId}`,
         { labelName: newName },
         {
           headers: {

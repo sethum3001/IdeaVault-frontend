@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {BASE_URL} from "../const";
 
 const CreateNoteButton = ({ onCreateNote }) => {
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +14,7 @@ const CreateNoteButton = ({ onCreateNote }) => {
     const fetchLabels = async () => {
       try {
         const accessToken = localStorage.getItem("accessToken");
-        const response = await axios.get("http://localhost:8070/labels", {
+        const response = await axios.get(`${BASE_URL}/labels`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

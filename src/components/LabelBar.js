@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../const";
 
 const LabelBar = ({ labelBarKey, onLabelSelect }) => {
   const [labels, setLabels] = useState([]);
@@ -8,7 +9,7 @@ const LabelBar = ({ labelBarKey, onLabelSelect }) => {
   useEffect(() => {
     const fetchLabels = async () => {
       try {
-        const response = await axios.get("http://localhost:8070/labels", {
+        const response = await axios.get(`${BASE_URL}/labels`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

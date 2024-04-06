@@ -7,6 +7,7 @@ import CreateNoteButton from "../components/CreateNoteButton";
 import Label from "../components/Label";
 import UserInfo from "../components/UserInfo";
 import Logo from "../components/Logo";
+import { BASE_URL } from "../const";
 
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
@@ -19,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     axios
-      .get("http://localhost:8070/notes", {
+      .get(`${BASE_URL}/notes`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -35,7 +36,7 @@ const Dashboard = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     axios
-      .get("http://localhost:8070/labels", {
+      .get(`${BASE_URL}/labels`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -77,7 +78,7 @@ const Dashboard = () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
       const response = await axios.post(
-        "http://localhost:8070/notes",
+        `${BASE_URL}/notes`,
         newNote,
         {
           headers: {
