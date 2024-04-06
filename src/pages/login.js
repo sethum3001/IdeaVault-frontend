@@ -17,19 +17,15 @@ function LoginPage() {
         password,
       });
       const token = response.data.accessToken;
-      // Handle the token, for example, store it in localStorage or session storage
       console.log("JWT token:", token);
-      // Redirect the user to the main app page or perform any necessary actions
       localStorage.setItem("accessToken", token);
       navigate("/dashboard");
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        console.log(error.response.data.errors)
+        console.log(error.response.data.errors);
       } else {
-         console.error("Authentication error:", error);
+        console.error("Authentication error:", error);
       }
-     
-      // Handle authentication errors, show error messages, etc.
     }
   };
 

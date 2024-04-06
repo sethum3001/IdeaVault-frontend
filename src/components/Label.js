@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {BASE_URL} from "../const";
+import { BASE_URL } from "../const";
 
 const Label = ({ setLabelBarKey }) => {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +16,7 @@ const Label = ({ setLabelBarKey }) => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      setExistingLabels(response.data); // Assuming response.data is an array of labels
+      setExistingLabels(response.data);
     } catch (error) {
       console.error("Error fetching labels:", error);
     }
@@ -37,7 +37,7 @@ const Label = ({ setLabelBarKey }) => {
       );
       // Refetch existing labels after creating a new one
       fetchLabels();
-      setNewLabel(""); // Clear input field after creating label
+      setNewLabel("");
       setLabelBarKey((prevKey) => prevKey + 1);
     } catch (error) {
       console.error("Error creating label:", error);
@@ -61,7 +61,7 @@ const Label = ({ setLabelBarKey }) => {
     }
   };
 
-  // Function to handle editing label (assuming you have an edit option in your UI)
+  // Function to handle editing label
   const handleEditLabel = async (labelId, newName) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
@@ -82,14 +82,11 @@ const Label = ({ setLabelBarKey }) => {
     }
   };
 
-  // Function to open the modal
   const openModal = () => {
     setShowModal(true);
-    // Fetch existing labels when modal is opened
     fetchLabels();
   };
 
-  // Function to close the modal
   const closeModal = () => {
     setShowModal(false);
   };
@@ -110,7 +107,6 @@ const Label = ({ setLabelBarKey }) => {
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <div className="relative bg-white rounded-lg overflow-hidden max-w-lg w-full">
               <div className="p-8">
-                {/* Form to create new label */}
                 <input
                   type="text"
                   value={newLabel}
@@ -124,8 +120,6 @@ const Label = ({ setLabelBarKey }) => {
                 >
                   Create
                 </button>
-
-                {/* Display existing labels */}
                 <div className="mt-3">
                   <ul>
                     {existingLabels.map((label) => (
@@ -133,25 +127,21 @@ const Label = ({ setLabelBarKey }) => {
                         key={label._id}
                         className="flex items-center justify-between mb-2"
                       >
-                        {/* Editable label name */}
                         <input
                           type="text"
                           value={label.labelName}
                           onChange={(e) => {
-                            label.labelName = e.target.value; // Update label name in local state
-                            setExistingLabels([...existingLabels]); // Update state to rerender
+                            label.labelName = e.target.value;
+                            setExistingLabels([...existingLabels]);
                           }}
                           className="border border-gray-300 rounded-md p-2 mr-2 flex-grow"
                         />
-                        {/* Option to delete label */}
                         <button
                           onClick={() => handleDeleteLabel(label._id)}
                           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
                         >
                           Delete
                         </button>
-
-                        {/* Option to edit label */}
                         <button
                           onClick={() =>
                             handleEditLabel(label._id, label.labelName)
@@ -164,8 +154,6 @@ const Label = ({ setLabelBarKey }) => {
                     ))}
                   </ul>
                 </div>
-
-                {/* Close modal button */}
                 <button
                   onClick={closeModal}
                   className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"

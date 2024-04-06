@@ -77,21 +77,13 @@ const Dashboard = () => {
   const handleCreateNote = async (newNote) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const response = await axios.post(
-        `${BASE_URL}/notes`,
-        newNote,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/notes`, newNote, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       console.log("Note created:", response.data);
-
-      // Update notes state with the newly created note
       setNotes([...notes, response.data]);
-
-      // Update filteredNotes state to include the new note
       setFilteredNotes([...filteredNotes, response.data]);
     } catch (error) {
       console.error("Error creating note:", error);
@@ -99,13 +91,13 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="px-4 md:px-8 lg:px-16 xl:px-20"> {/* Add padding to the container */}
+    <div className="px-4 md:px-8 lg:px-16 xl:px-20">
       <div className="flex flex-col mt-10">
         <Logo />
         <UserInfo />
       </div>
-  
-      <div className="flex flex-col md:flex-row justify-between items-center bg-gray-100 my-2 py-2 px-2 md:px-0"> {/* Adjust alignment and padding */}
+
+      <div className="flex flex-col md:flex-row justify-between items-center bg-gray-100 my-2 py-2 px-2 md:px-0">
         <SearchBar setSearchQuery={setSearchQuery} />
         <CreateNoteButton onCreateNote={handleCreateNote} />
       </div>
@@ -113,11 +105,10 @@ const Dashboard = () => {
         <Label setLabelBarKey={setLabelBarKey} />
         <LabelBar labelBarKey={labelBarKey} onLabelSelect={handleLabelSelect} />
       </div>
-  
-      {/* Render pinned notes */}
+
       <div className="mb-4">
         <h2 className="text-base font-medium mb-2">Pinned Notes</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> {/* Adjust grid columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {filteredNotes
             .filter((note) => note.isPin)
             .map((note) => (
@@ -131,11 +122,10 @@ const Dashboard = () => {
             ))}
         </div>
       </div>
-  
-      {/* Render unpinned notes */}
+
       <div>
         <h2 className="text-base font-medium mb-2">Unpinned Notes</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> {/* Adjust grid columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {filteredNotes
             .filter((note) => !note.isPin)
             .map((note) => (
@@ -151,9 +141,6 @@ const Dashboard = () => {
       </div>
     </div>
   );
-  
-  
-  
 };
 
 export default Dashboard;

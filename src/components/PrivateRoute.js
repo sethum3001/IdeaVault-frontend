@@ -17,7 +17,7 @@ const PrivateRoute = () => {
                     return;
                 }
 
-                // Make a request to your backend to verify the token
+                // Make a request to the backend to verify the token
                 const response = await axios.post(
                     `${BASE_URL}/auth/verify-token`,
                     null,

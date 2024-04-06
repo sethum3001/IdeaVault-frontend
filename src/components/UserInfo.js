@@ -3,16 +3,13 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 const UserInfo = () => {
-  // Decode the access token to extract user information
   const accessToken = localStorage.getItem("accessToken");
   const decodedToken = jwtDecode(accessToken);
   const username = decodedToken.name;
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear the access token from local storage
     localStorage.removeItem("accessToken");
-    // Redirect to the login page or any other desired route
     navigate("/");
   };
 
