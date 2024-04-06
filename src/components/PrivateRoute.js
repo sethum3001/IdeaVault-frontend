@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from '../const';
 
 const PrivateRoute = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,7 +19,7 @@ const PrivateRoute = () => {
 
                 // Make a request to your backend to verify the token
                 const response = await axios.post(
-                    "http://localhost:8070/auth/verify-token",
+                    `${BASE_URL}/auth/verify-token`,
                     null,
                     {
                       headers: {

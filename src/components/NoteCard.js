@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../const";
 
 const NoteCard = ({ note, labels, setFilteredNotes, setNotes }) => {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +23,8 @@ const NoteCard = ({ note, labels, setFilteredNotes, setNotes }) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
       const response = await axios.patch(
-        `http://localhost:8070/notes/${updatedNote._id}`,
+
+        `${BASE_URL}/notes/${updatedNote._id}`,
         updatedNote,
         {
           headers: {
@@ -51,7 +53,7 @@ const NoteCard = ({ note, labels, setFilteredNotes, setNotes }) => {
     }
     try {
       const accessToken = localStorage.getItem("accessToken");
-      await axios.delete(`http://localhost:8070/notes/${note._id}`, {
+      await axios.delete(`${BASE_URL}/notes/${note._id}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -67,7 +69,7 @@ const NoteCard = ({ note, labels, setFilteredNotes, setNotes }) => {
   const fetchNotes = () => {
     const accessToken = localStorage.getItem("accessToken");
     axios
-      .get("http://localhost:8070/notes", {
+      .get(`${BASE_URL}/notes`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

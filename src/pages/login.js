@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"; 
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../const";
 
 function LoginPage() {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ function LoginPage() {
     event.preventDefault();
     try {
       // Send sign-in request to the server and handle the JWT token response
-      const response = await axios.post("http://localhost:8070/user/login", {
+      const response = await axios.post(`${BASE_URL}/user/login`, {
         name,
         password,
       });

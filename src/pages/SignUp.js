@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import { useNavigate  } from 'react-router-dom';
+import { BASE_URL } from '../const';
 
 function SignUp() {
     const navigate  = useNavigate ();
@@ -13,7 +14,7 @@ function SignUp() {
         try {
             // Send sign-up request to the server and handle the JWT token response
             const response = await axios.post(
-                'http://localhost:8070/user/register',
+                `${BASE_URL}/user/register`,
                 { name, email, password }
             );
             const token = response.data.accessToken;
