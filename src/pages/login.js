@@ -38,7 +38,7 @@ function LoginPage() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="name"
               className="block text-gray-700 font-semibold mb-2"
             >
               User Name
@@ -50,7 +50,7 @@ function LoginPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full px-3 py-2 border rounded-md"
-              placeholder="Your Email Address"
+              placeholder="Your Username"
               required
             />
           </div>
