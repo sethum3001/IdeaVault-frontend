@@ -11,12 +11,13 @@ This is the frontend component of the IdeaVault project. It provides a user-frie
 - **Clone Repository**: Clone this repository to your local machine.
 - **Navigate to Frontend**: Navigate to the frontend directory.
 - **Install Dependencies**: Run `npm install` to install dependencies.
-- **Start Development Server**: Run `npm start` to start the development server.
-- **Open Application**: Open your browser and navigate to `http://localhost:3000` to view the application.
 - **Configuration**: In const.js file, change the BASE_URL to your local instance url of IdeaVault backend.
 ```
     const BASE_URL = "http://localhost:8070";
 ```
+- **Start Development Server**: Run `npm start` to start the development server.
+- **Open Application**: Open your browser and navigate to `http://localhost:3000` to view the application.
+
 
 ## Folder Structure
 - `/src`: Contains the source code of the frontend application.
